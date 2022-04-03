@@ -1,12 +1,39 @@
-repos:
-- id: /.*/
+# repos:
+# - id: /.*/
 
-  # With just allowed_overrides: [workflow], repos can only
-  # choose workflows defined server-side.
+#   # With just allowed_overrides: [workflow], repos can only
+#   # choose workflows defined server-side.
+#   allowed_overrides: [workflow]
+#   allowed_workflows: [terragrunt]
+
+
+#   # By setting allow_custom_workflows to true, we allow repos to also
+#   # define their own workflows.
+#   allow_custom_workflows: true
+
+
+
+# repos.yaml
+# Specify TERRAGRUNT_TFPATH environment variable to accommodate setting --default-tf-version
+# Generate json plan via terragrunt for policy checks
+repos:
+- id: "/.*/"
+  workflow: terragrunt
   allowed_overrides: [workflow]
   allowed_workflows: [terragrunt]
-
-
-  # By setting allow_custom_workflows to true, we allow repos to also
-  # define their own workflows.
   allow_custom_workflows: true
+workflows:
+  terragrunt:
+    plan:
+      steps:
+      - env:
+          name: TERRAGRUNT_TFPATH
+          command: 'echo "terraform${ATLANTIS_TERRAFORM_VERSION}"'
+      - run: terragrunt plan -out=$PLANFILE
+      - run: terragrunt show -json $PLANFILE > $SHOWFILE
+    apply:
+      steps:
+      - env:
+          name: TERRAGRUNT_TFPATH
+          command: 'echo "terraform${ATLANTIS_TERRAFORM_VERSION}"'
+      - run: terragrunt apply $PLANFILE
