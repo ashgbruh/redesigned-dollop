@@ -3,19 +3,7 @@
 # Generate json plan via terragrunt for policy checks
 repos:
 - id: "/.*/"
-  workflow: terragrunt
-workflows:
-  terragrunt:
-    plan:
-      steps:
-      - env:
-          name: TERRAGRUNT_TFPATH
-          command: 'echo "terraform${ATLANTIS_TERRAFORM_VERSION}"'
-      - run: terragrunt plan -out=$PLANFILE
-      - run: terragrunt show -json $PLANFILE > $SHOWFILE
-    apply:
-      steps:
-      - env:
-          name: TERRAGRUNT_TFPATH
-          command: 'echo "terraform${ATLANTIS_TERRAFORM_VERSION}"'
-      - run: terragrunt apply $PLANFILE
+  apply_requirements: [approved]
+  allowed_overrides: [workflow]
+  allow_custom_workflows: true
+  
