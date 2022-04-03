@@ -18,3 +18,9 @@ workflows:
           name: TERRAGRUNT_TFPATH
           command: 'echo "terraform${ATLANTIS_TERRAFORM_VERSION}"'
       - run: terragrunt apply $PLANFILE
+
+
+allowed_overrides: [workflow]
+allowed_workflows: [terragrunt]
+allow_custom_workflows: true
+
