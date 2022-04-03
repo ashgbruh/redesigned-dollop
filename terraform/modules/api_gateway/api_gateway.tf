@@ -47,4 +47,3 @@ resource "aws_lambda_permission" "apigw_lambda" {
 }
 
 resource "null_resource" "example" {}
-
