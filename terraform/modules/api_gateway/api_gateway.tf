@@ -5,6 +5,13 @@ resource "aws_api_gateway_rest_api" "example" {
   }
 }
 
+resource "aws_api_gateway_rest_api" "example1" {
+  name = "example1"
+  endpoint_configuration {
+    types = ["REGIONAL"]
+  }
+}
+
 resource "aws_api_gateway_resource" "example" {
   parent_id   = aws_api_gateway_rest_api.example.root_resource_id
   path_part   = "example"
@@ -40,4 +47,3 @@ resource "aws_lambda_permission" "apigw_lambda" {
 }
 
 resource "null_resource" "example" {}
-
