@@ -40,6 +40,14 @@ deps:
 ## Install all Digital PaaS dependencies
 install: update deps terraform aws-azure-login
 
+## Deploy
+deploy:
+	build/deploy.sh
+
+## Destroy
+destroy:
+	build/destroy.sh
+
 ## See all the Makefile targets
 help:
 		@awk -v skip=1 \
