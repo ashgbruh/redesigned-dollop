@@ -1,0 +1,14 @@
+# repos.yaml
+repos:
+- id: /.*/
+
+  # With just allowed_overrides: [workflow], repos can only
+  # choose workflows defined server-side.
+  allowed_overrides: [workflow]
+
+  # By setting allow_custom_workflows to true, we allow repos to also
+  # define their own workflows.
+  allow_custom_workflows: true
+
+  # allowed_workflows: [cus]
+
