@@ -1,6 +1,6 @@
 version: 3
 projects:
-- dir: terraform/nonprod
+- dir: terraform/nonprod/api_gateway
   workflow: terragrunt
 workflows:
   terragrunt:
