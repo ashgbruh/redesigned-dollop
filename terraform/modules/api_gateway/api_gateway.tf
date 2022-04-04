@@ -1,5 +1,5 @@
-resource "aws_api_gateway_rest_api" "example1" {
-  name = "example1"
+resource "aws_api_gateway_rest_api" "example2" {
+  name = "example2"
   endpoint_configuration {
     types = ["REGIONAL"]
   }
