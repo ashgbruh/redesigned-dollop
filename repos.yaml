@@ -1,4 +1,0 @@
-# # repos.yaml
-# repos:
-# - id: /.*/
-#   apply_requirements: [approved]
