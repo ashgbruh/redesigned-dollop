@@ -1,5 +1,13 @@
-resource "aws_api_gateway_rest_api" "example2" {
-  name = "example2"
+terraform {
+  backend "s3" {
+    bucket = "ef-terraform-state"
+    key    = "TF_logs"
+    region = "eu-west-2"
+  }
+}
+
+resource "aws_api_gateway_rest_api" "example3" {
+  name = "example3"
   endpoint_configuration {
     types = ["REGIONAL"]
   }
